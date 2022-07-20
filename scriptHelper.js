@@ -14,26 +14,58 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
                 </ol>
                 <img src="">
    */
+    let missionHTML = `<h2>Mission Destination</h2>
+    <ol>
+    <li>Name: ${name}</li>
+    <li>Diameter: ${diameter}</li>
+    <li>Star: ${star}</li>
+    <li>Distance from Earth: ${distance}</li>
+    <li>Number of Moons ${moons}</li>
+    </ol>
+    <img src="${imageUrl}">`
+    let changedHtml = document.getElementById('missionTarget')
+    changedHtml.innerHTML = missionHTML
 }
 
 function validateInput(testInput) {
-   
+   let entry = Number(testInput);
+   let returnValue = '';
+   if (isNaN(entry) === false) {
+        let returnValue = 'Is a Number';
+   } else if(isNaN(entry) === true) {
+        if (entry === ''){
+            let returnValue = 'Empty' ;
+        } else {
+            let returnValue = 'Not a Number' ;
+        }
+   }
+   return returnValue;
 }
+
+console.log(validateInput(12));
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
    
+
+
+
 }
 
 async function myFetch() {
     let planetsReturned;
 
-    planetsReturned = await fetch().then( function(response) {
+    planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
+        return response.json();
         });
 
     return planetsReturned;
 }
 
 function pickPlanet(planets) {
+
+    let randomPlanet = (Math.floor(Math.random()*planets.length));
+    return planets[randomPlanet];
+
 }
 
 module.exports.addDestinationInfo = addDestinationInfo;
