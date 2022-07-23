@@ -14,6 +14,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
                 </ol>
                 <img src="">
    */
+    
     let missionHTML = `<h2>Mission Destination</h2>
     <ol>
     <li>Name: ${name}</li>
@@ -42,11 +43,12 @@ function validateInput(testInput) {
    return returnValue;
 }
 
-console.log(validateInput(12));
+
+
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-   
-
+    
+    
 
 
 }
@@ -60,6 +62,8 @@ async function myFetch() {
 
     return planetsReturned;
 }
+
+console.log(myFetch())
 
 function pickPlanet(planets) {
 
