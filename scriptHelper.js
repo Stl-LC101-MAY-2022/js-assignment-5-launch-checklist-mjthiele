@@ -48,7 +48,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     if (validateInput(pilot) === 'Empty' || validateInput(copilot) === 'Empty' || validateInput(fuelLevel) === 'Empty' || validateInput(cargoLevel) === 'Empty'){
         alert("All fields are required!");
     } else if (validateInput(cargoLevel) === 'Not a number' || validateInput(fuelLevel) === 'Not a number'){
-        alert("you must enter a valid numerical input for these fields.");
+        alert("you must enter a valid numerical input for Fuel Level and Cargo Mass fields.");
     } else if (validateInput(pilot) === 'Is a number' || validateInput(copilot) === 'Is a number'){
         alert("You must enter a valid name that is not a number.");
     } else {
