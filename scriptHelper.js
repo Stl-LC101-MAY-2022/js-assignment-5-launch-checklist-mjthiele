@@ -29,18 +29,15 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 }
 
 function validateInput(testInput) {
-   let entry = Number(testInput);
-   let returnValue = '';
-   if (isNaN(entry) === false) {
-        let returnValue = 'Is a Number';
-   } else if(isNaN(entry) === true) {
-        if (entry === ''){
-            let returnValue = 'Empty' ;
-        } else {
-            let returnValue = 'Not a Number' ;
-        }
-   }
-   return returnValue;
+    if (testInput === ""){
+        return "Empty";
+    } else if(isNaN(testInput)){
+        return "Not a number";
+    } else if (!isNaN(testInput)){
+        return "Is a number";
+    }
+       
+   
 }
 
 
@@ -48,8 +45,30 @@ function validateInput(testInput) {
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     
-    
+    if (validateInput(pilot) === 'Empty' || validateInput(copilot) === 'Empty' || validateInput(fuelLevel) === 'Empty' || validateInput(cargoLevel) === 'Empty'){
+        alert("All fields are required!");
+    } else if (validateInput(cargoLevel) === 'Not a number' || validateInput(fuelLevel) === 'Not a number'){
+        alert("you must enter a valid numerical input for these fields.");
+    } else if (validateInput(pilot) === 'Is a number' || validateInput(copilot) === 'Is a number'){
+        alert("You must enter a valid name that is not a number.");
+    } else {
+        list.style.visibility = "visible";
+        pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch.`;
+        copilotStatus.innerHTML = `Copilot ${copilot} is ready for launch.`;
+    }
 
+    if (fuelLevel <= 9999){
+        launchStatus.innerHTML = 'Shuttle not ready for launch.';
+        launchStatus.style.color = 'red';
+        fuelStatus.innerHTML = 'Fuel status not high enough to launch';
+    } else if (cargoLevel >= 9999){
+        launchStatus.innerHTML = 'Shuttle not ready for launch.';
+        launchStatus.style.color = 'red';
+        cargoStatus.innerHTML = 'Cargo weight too much to launch.';
+    } else {
+        launchStatus.innerHTML = "Good to go!";
+        launchStatus.style.color = 'green';
+    }
 
 }
 
@@ -63,7 +82,6 @@ async function myFetch() {
     return planetsReturned;
 }
 
-console.log(myFetch())
 
 function pickPlanet(planets) {
 
